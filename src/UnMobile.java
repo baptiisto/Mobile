@@ -13,7 +13,7 @@ class UnMobile extends JPanel implements Runnable
 	saHauteur = telleHauteur;
 	setSize(telleLargeur, telleHauteur);
     }
-
+	//
     public void run()
     {
 	for (sonDebDessin=0; sonDebDessin < saLargeur - sonPas; sonDebDessin+= sonPas)
