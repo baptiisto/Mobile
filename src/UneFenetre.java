@@ -6,24 +6,23 @@ import javax.swing.*;
 class UneFenetre extends JFrame 
 {
     UnMobile tache;
-    private final int LARG=900, HAUT=900;
-    private  boolean stop = false;
-    
-    public UneFenetre()
+    private final int LARG=800, HAUT=800;
+    public UneFenetre(int nombre)
     {
-
-	// ajouter sonMobile a la fenetre
-	// creer une thread laThread avec sonMobile
-        tache = new UnMobile(LARG, HAUT);
-        Thread supportDeTache = new Thread(tache);
-	// afficher la fenetre
         this.setVisible(true);
         Container conteneur = getContentPane();
-        conteneur.setLayout(new BorderLayout());
-        conteneur.add(tache);
+        conteneur.setLayout(new BoxLayout(conteneur,BoxLayout.Y_AXIS));
         this.setSize(LARG, HAUT);
-	// lancer laThread #
-        supportDeTache.start();
+	// ajouter sonMobile a la fenetre
+	// creer une thread laThread avec sonMobile
+        for(int e = 0;e < nombre;e++){
+            tache = new UnMobile(LARG, 10);
+            Thread supportDeTache = new Thread(tache);
+            conteneur.add(tache);
+            supportDeTache.start();
+
+        }
+
     }
 }
 
