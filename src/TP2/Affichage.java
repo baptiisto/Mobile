@@ -8,12 +8,13 @@ import java.io.BufferedReader;
 import java.lang.String;
 
 public class Affichage extends Thread{
-	String texte; 
-
-	public Affichage (String txt){texte=txt;}
+	String texte;
+	CemaphoreBinaire cb;
+	public Affichage (String txt, CemaphoreBinaire parcb){texte=txt; cb=parcb;}
 	
 	public void run(){
-		synchronized (System.out) {
+		/*synchronized (System.out)* { */
+		cb.syncWait();
 		for (int i=0; i<texte.length(); i++){
 				System.out.print(texte.charAt(i));
 				try {
@@ -21,7 +22,8 @@ public class Affichage extends Thread{
 				} catch (InterruptedException e) {
 				}
 			}
+		cb.syncSignal();
 		}
 
 	}
-}
+//}

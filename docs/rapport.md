@@ -74,8 +74,10 @@ Pourquoi les A et B se superposent ?
         Signal choix un thread et le met en état exéutionn et le place dans la ressource critique.
         - Deux types de sémaphores:
             1er: binaire thread passe 1 par 1
-            2 eme : thread passe en groupe en même temps 
-
+            2 eme : thread passe en groupe en même temps
+        Semaphore Binaire : Si la valeur initial est égale à 1 alors la ressource critique est libre , si la valeur initiale est équivalente à 0 alors la ressource est bloqué et les threads aussi.
+        Sync Wait fais attendre les thraeds si la valeur est égale à 0 en attendant que la valeur revienne à 1.
+        Sync Signal dis aux atres threads que la ressource est débloqué et fais revenir la valeur initial à 1.
 
     
 

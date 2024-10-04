@@ -1,16 +1,16 @@
 package TP2;
 
-public abstract class semaphore {
+public abstract class Cemaphore {
 
     protected int valeur=0;
 
-    protected semaphore (int valeurInitiale){
+    protected Cemaphore(int valeurInitiale){
 	valeur = valeurInitiale>0 ? valeurInitiale:0;
     }
 
     public synchronized void syncWait(){
 	try {
-	    while(valeur<=0){
+	    while(valeur<=0){ // si la valeur est inférieure ou égale à zéro , on fait wait
 		wait();
         }
 	    valeur--;
