@@ -22,7 +22,7 @@ class UneFenetre extends JFrame
         conteneur.setLayout(new BorderLayout());
         conteneur.add(tache);
         this.setSize(LARG, HAUT);
-	// lancer laThread
+	// lancer laThread #
         supportDeTache.start();
     }
 }
