@@ -67,7 +67,15 @@ Pourquoi les A et B se superposent ?
         methode synchro
         sémaphore
     - Moniteur ( protége les données , un seul processus peut accéder à ladite donné)
-    
+    Zoom sur sémaphore:
+        -  sémaphore (sens littéral : Post de signalisation sur les côtes)
+        Stop t'as pas le droit = Wait() ( tous les threads sont bloqués , stop accées à la ressource)
+        thread dis je sors = signal() (1 threas envoie un signal au sémaphore pour dire que le thread a fini d'utiliser la ressource) 
+        Signal choix un thread et le met en état exéutionn et le place dans la ressource critique.
+        - Deux types de sémaphores:
+            1er: binaire thread passe 1 par 1
+            2 eme : thread passe en groupe en même temps 
+
 
     
 
