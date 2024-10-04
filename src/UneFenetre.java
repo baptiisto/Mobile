@@ -24,7 +24,7 @@ class UneFenetre extends JFrame
         sonBouton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boutonActivation(supportDeTache);
+                boutonActivation(tache);
             }
         });
         conteneur.add(tache);
@@ -33,14 +33,14 @@ class UneFenetre extends JFrame
 	// lancer laThread
         supportDeTache.start();
     }
-    private  void boutonActivation(Thread supportDeTache){
+    private  void boutonActivation(UnMobile tache){
         if(!stop){
-            supportDeTache.start();
+            tache.arreter();
             stop = true;
         }
         else{
             stop = false;
-            supportDeTache.resume();
+            tache.reprendre();
         }
     }
 }
