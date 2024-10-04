@@ -32,6 +32,14 @@
 
 ### d) Explication du code
 
+#### TP2)
+    On a aussi fait du parralélisme en faisant marcher plusieurs mobiles en même temps chaque mobile était dans un thread. On a mis une vitesse différente à tous les mobiles.
+Pourquoi les A et B se superposent ?
+
+    Les threads veulent afficher leur string au même endroit. Ils sont tous les deux indépendants
+    Ils accédent toutes les deux à la ressource critique System.out.Ils le font sur une boucle for qui est la section critique.
+
+
 ### e) Gestion des taches et des sections critique
     Pas envie que les threads accéssent à la meme zone mémoire 
     Dufaud est i , on veut touys faire à i++ à dufaud. 

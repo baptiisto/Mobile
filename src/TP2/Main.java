@@ -12,10 +12,13 @@ public class Main {
 		// TODO Auto-generated method stub
 		Affichage TA = new Affichage("AAA");
 		Affichage TB = new Affichage("BB");
-
+		Affichage TC = new Affichage("CCCCCCCCCCCCC");
+		Affichage TD = new Affichage("DDDDD");
 		TB.start();
 
 		TA.start();
+		TC.start();
+		TD.start();
 	}
 
 }
