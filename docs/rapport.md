@@ -78,7 +78,7 @@ Pourquoi les A et B se superposent ?
         Semaphore Binaire : Si la valeur initial est égale à 1 alors la ressource critique est libre , si la valeur initiale est équivalente à 0 alors la ressource est bloqué et les threads aussi.
         Sync Wait fais attendre les thraeds si la valeur est égale à 0 en attendant que la valeur revienne à 1.
         Sync Signal dis aux atres threads que la ressource est débloqué et fais revenir la valeur initial à 1.
-
+        Un thread ne peut pas jamais allez en section critique dans un code. Si un mobile est trop lent comparé aux autres mobiles. Il sera toujours dans la file d'attente car l'algorithme de séléction pourra jamais le choisir. Car les autres threads auront toujours le temps de retourner dans la file.
     
 
 
