@@ -13,7 +13,7 @@ class UneFenetre extends JFrame
         Container conteneur = getContentPane();
         conteneur.setLayout(new BoxLayout(conteneur,BoxLayout.Y_AXIS));
         this.setSize(LARG, HAUT);
-        CemaphoreGeneral cg = new CemaphoreGeneral(1);
+        CemaphoreGeneral cg = new CemaphoreGeneral(5);
 	// ajouter sonMobile a la fenetre
 	// creer une thread laThread avec sonMobile
         for(int e = 0;e < nombre;e++){
