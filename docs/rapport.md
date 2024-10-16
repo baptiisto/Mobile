@@ -13,22 +13,43 @@
 ### b)Thread 
 
 ### c) Cycle de vie 
-    Procéssus léger : un cycle de vie
-    3 états:
-    -
-    -
-    -
-    Algorithme  de séléction pour choisir un thread prêt à être exécuté. 
-    Va envoyer le processus sur le coeur 
-    thread passe en état exécution
-    L'os peut susprendre l'éxécution : thread va être en état bloqué
-    Le thread  peut rependre dans un notre coeur . C'est L'os qui gére tout ca 
-    Nous on sait pas ou se trouve précisément les threads . On peut juste gérer la dépendance entre les threads.
-    La premiére fois qu'unn thread est lancé par start ca vient de nous sinon c'est L'os qui décide.
-    Le thread bloqué n'utilise pas de ressources. L'os sait qu'il a une ressource de libre car thread bloqué.
-    On attend une ressource pour être rééxécuté ( je parle du thread)
-    Quand terminer la méthode run , le thread est finito , il disparait à jamais 
-    
+    Voici une version plus familière du rapport :
+
+---
+
+#### Cycle de Vie d'un Thread
+
+##### 1. Les Différents États
+
+Un thread (ou processus léger) passe par trois états principaux pendant son cycle de vie :
+
+1. **Prêt** : Le thread est prêt à être exécuté, il attend juste qu'un cœur du processeur se libère.
+2. **En exécution** : Le thread est en train de tourner sur un cœur.
+3. **Bloqué** : Le thread est en pause, en attente d'une ressource pour continuer.
+
+##### 2. Choix du Thread et Rôle de l'OS
+
+Quand un thread est prêt à être exécuté, c'est l'OS qui décide quel thread doit être envoyé vers un cœur grâce à un algorithme de sélection. Une fois choisi, il passe en état d'exécution. 
+
+Cependant, l'OS peut à tout moment suspendre un thread (le mettre en pause) et l'envoyer dans l'état bloqué, généralement parce qu'il attend une ressource spécifique (comme l'accès à un fichier ou un verrou). Pendant qu'il est bloqué, il ne consomme aucune ressource CPU, et l'OS peut donc réutiliser ces ressources pour d'autres threads.
+
+##### 3. Changement de Cœur et Gestion Transparente
+
+Un thread peut très bien reprendre sur un autre cœur après avoir été bloqué. Ce changement est totalement pris en charge par l'OS. De notre côté, on ne sait pas vraiment sur quel cœur tourne un thread à un moment donné, c'est l'OS qui gère ça. Ce qu'on peut faire, c'est s'assurer que les threads sont bien synchronisés entre eux et qu'ils partagent les ressources correctement.
+
+##### 4. Lancement et Gestion du Thread
+
+La première fois qu'on lance un thread avec `start()`, c'est nous qui prenons l'initiative. Ensuite, c'est l'OS qui prend le relais et décide où et quand le thread va être exécuté.
+
+###### 5. Attente de Ressources
+
+Quand un thread est bloqué, il attend simplement la ressource nécessaire pour reprendre. Pendant cette attente, il n'utilise aucune ressource processeur, ce qui permet à l'OS de libérer ces ressources pour d'autres tâches.
+
+###### 6. Fin du Thread
+
+Une fois que le thread a terminé d'exécuter sa méthode `run()`, il est terminé pour de bon. Il disparaît du système et ne peut plus être relancé.
+
+
 
 ### d) Explication du code
 
