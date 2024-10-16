@@ -13,13 +13,9 @@
 ### b)Thread 
 
 ### c) Cycle de vie 
-    Voici une version plus familière du rapport :
 
----
 
-#### Cycle de Vie d'un Thread
-
-##### 1. Les Différents États
+#### 1. Les Différents États
 
 Un thread (ou processus léger) passe par trois états principaux pendant son cycle de vie :
 
@@ -27,25 +23,25 @@ Un thread (ou processus léger) passe par trois états principaux pendant son cy
 2. **En exécution** : Le thread est en train de tourner sur un cœur.
 3. **Bloqué** : Le thread est en pause, en attente d'une ressource pour continuer.
 
-##### 2. Choix du Thread et Rôle de l'OS
+#### 2. Choix du Thread et Rôle de l'OS
 
 Quand un thread est prêt à être exécuté, c'est l'OS qui décide quel thread doit être envoyé vers un cœur grâce à un algorithme de sélection. Une fois choisi, il passe en état d'exécution. 
 
 Cependant, l'OS peut à tout moment suspendre un thread (le mettre en pause) et l'envoyer dans l'état bloqué, généralement parce qu'il attend une ressource spécifique (comme l'accès à un fichier ou un verrou). Pendant qu'il est bloqué, il ne consomme aucune ressource CPU, et l'OS peut donc réutiliser ces ressources pour d'autres threads.
 
-##### 3. Changement de Cœur et Gestion Transparente
+#### 3. Changement de Cœur et Gestion Transparente
 
 Un thread peut très bien reprendre sur un autre cœur après avoir été bloqué. Ce changement est totalement pris en charge par l'OS. De notre côté, on ne sait pas vraiment sur quel cœur tourne un thread à un moment donné, c'est l'OS qui gère ça. Ce qu'on peut faire, c'est s'assurer que les threads sont bien synchronisés entre eux et qu'ils partagent les ressources correctement.
 
-##### 4. Lancement et Gestion du Thread
+#### 4. Lancement et Gestion du Thread
 
 La première fois qu'on lance un thread avec `start()`, c'est nous qui prenons l'initiative. Ensuite, c'est l'OS qui prend le relais et décide où et quand le thread va être exécuté.
 
-###### 5. Attente de Ressources
+#### 5. Attente de Ressources
 
 Quand un thread est bloqué, il attend simplement la ressource nécessaire pour reprendre. Pendant cette attente, il n'utilise aucune ressource processeur, ce qui permet à l'OS de libérer ces ressources pour d'autres tâches.
 
-###### 6. Fin du Thread
+#### 6. Fin du Thread
 
 Une fois que le thread a terminé d'exécuter sa méthode `run()`, il est terminé pour de bon. Il disparaît du système et ne peut plus être relancé.
 
@@ -54,12 +50,18 @@ Une fois que le thread a terminé d'exécuter sa méthode `run()`, il est termin
 ### d) Explication du code
 
 #### TP2)
-    On a aussi fait du parralélisme en faisant marcher plusieurs mobiles en même temps chaque mobile était dans un thread. On a mis une vitesse différente à tous les mobiles.
-Pourquoi les A et B se superposent ?
 
-    Les threads veulent afficher leur string au même endroit. Ils sont tous les deux indépendants
-    Ils accédent toutes les deux à la ressource critique System.out.Ils le font sur une boucle for qui est la section critique.
+##### Problème d'Affichage avec les Threads
 
+Dans notre TP 2, nous avons fait fonctionner plusieurs mobiles en parallèle, chaque mobile étant géré par un thread distinct, avec des vitesses différentes. Cependant, nous avons observé un comportement inattendu : au lieu d'avoir un affichage ordonné du type **AABB**, l'affichage se fait sous la forme **ABAB**.
+
+##### Explication du Comportement
+
+Ce problème survient parce que les deux threads, celui du mobile A et celui du mobile B, tentent d'afficher leur résultat au même moment, et au même endroit. Puisqu'ils sont indépendants, ils ne coordonnent pas leurs actions. En conséquence, leurs sorties se chevauchent.
+
+Ce qui se passe, c'est que les deux threads accèdent simultanément à `System.out`, la ressource utilisée pour afficher des messages à l'écran. Cette ressource est **partagée**, ce qui signifie que plusieurs threads essaient de l’utiliser en même temps. Cela crée un mélange dans l'affichage.
+
+Les deux threads effectuent cette opération dans une boucle `for`, qui représente une **section critique** : la partie du code où plusieurs threads tentent d’accéder à la même ressource en même temps. Comme il n'y a pas de synchronisation entre eux, cela conduit à cet affichage désordonné.
 
 ### e) Gestion des taches et des sections critique
     Pas envie que les threads accéssent à la meme zone mémoire 
