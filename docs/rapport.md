@@ -9,7 +9,7 @@
 ## TP 1)
 
 ### a) Conception architecturale
-
+![image_conception(TP1)](conception.png)
 ### b)Thread 
 
 Un **thread** (fil d'exécution) est la plus petite unité de traitement qu'un système d'exploitation peut gérer. Il permet l'exécution simultanée de plusieurs tâches au sein d'un même programme.
