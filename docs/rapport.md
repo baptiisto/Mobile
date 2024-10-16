@@ -63,46 +63,58 @@ Ce qui se passe, c'est que les deux threads accèdent simultanément à `System.
 
 Les deux threads effectuent cette opération dans une boucle `for`, qui représente une **section critique** : la partie du code où plusieurs threads tentent d’accéder à la même ressource en même temps. Comme il n'y a pas de synchronisation entre eux, cela conduit à cet affichage désordonné.
 
-### e) Gestion des taches et des sections critique
-    Pas envie que les threads accéssent à la meme zone mémoire 
-    Dufaud est i , on veut touys faire à i++ à dufaud. 
-    Corruption mémoire car 15 threads sur la meme zone mémoire est une MAUVAISE IDEE
-    Gestion séquentielle de la mémoire
-    une ressource critique c'est une zone mémoire , un tableau , case i , un eul processus à la foid qu'il peut utiliser
-    section critique , un portyion de code qu'un seul thread peut éxécuté à la fois , section critique utilisé quand thread utilise la même ressource
-    exclusion mutuelle : P1 et P2 accedent à la meme ressource critique, P1 accede à la ressource , P2 est automatiquement exclu et inversement marche avec infini de processus 
-    Traiter l'exclsuion muteuelle 
-    principe d'exclusion mutuelle:
-    4 principes:
-    - Un processus dans un instant critique , soit personne traverse la portion de code soit 1. 0 ou 1
-    - En dehors de la portion de code , si un processus est bloqué alors un autre doit pouvoir entrer en section critique à condition que le 1 er principe sooit respecté
-    - Si plusieurs processus attendnetd de rentré dans la secttion critique; l'un deux doit pouvoir y entrer au bout d'un moment fini ( si pas fait ca , le code se fige, tous les processus attendnet comme de singes, les processus s'est arréte pendnat la boucle car ils sont trop CONS)
-    - Meme solution pour tous lkes processus , ils faut qu'il travaillent avec les meme regles
-    Application de ces 4 principes , c'est le MUUUUUUUUUUUUUUUUUUUUUUTTTTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEXXXXXXXXXXXXXXXXXXX (mutal exclusiion askip d'aprés dufaud Kun)
-    On peut utiliser les sémaphores pour utiliser le mutex 
-    On utilsie en java synchronised qui est un verrouy mutex . Permet de gérer less sections critiques (protection d'un bout de code)
-    On fait un synchronised , lors de la méthode ,soit on met le bout de code eentre accolade . On mettra ca en oeuvre lors du TP2
-    oh bebou (ntm)
-    inverse de asynchrone ( cest son rival)
-    Plusieurs facons de gerer plusieurs séquences d'actions
-    - Exclusion
-        Bloc synchro
-        methode synchro
-        sémaphore
-    - Moniteur ( protége les données , un seul processus peut accéder à ladite donné)
-    Zoom sur sémaphore:
-        -  sémaphore (sens littéral : Post de signalisation sur les côtes)
-        Stop t'as pas le droit = Wait() ( tous les threads sont bloqués , stop accées à la ressource)
-        thread dis je sors = signal() (1 threas envoie un signal au sémaphore pour dire que le thread a fini d'utiliser la ressource) 
-        Signal choix un thread et le met en état exéutionn et le place dans la ressource critique.
-        - Deux types de sémaphores:
-            1er: binaire thread passe 1 par 1
-            2 eme : thread passe en groupe en même temps
-        Semaphore Binaire : Si la valeur initial est égale à 1 alors la ressource critique est libre , si la valeur initiale est équivalente à 0 alors la ressource est bloqué et les threads aussi.
-        Sync Wait fais attendre les thraeds si la valeur est égale à 0 en attendant que la valeur revienne à 1.
-        Sync Signal dis aux atres threads que la ressource est débloqué et fais revenir la valeur initial à 1.
-        Un thread ne peut pas jamais allez en section critique dans un code. Si un mobile est trop lent comparé aux autres mobiles. Il sera toujours dans la file d'attente car l'algorithme de séléction pourra jamais le choisir. Car les autres threads auront toujours le temps de retourner dans la file.
-    
+Voici une version plus formelle de votre texte, tout en préservant la clarté des concepts :
+
+---
+
+### e) Problème d'Accès Concurrent et Exclusion Mutuelle
+
+Dans notre TP2, nous avons rencontré un problème classique : les threads tentent d'accéder simultanément à la même zone mémoire. Par exemple, si plusieurs threads essaient d'effectuer l'opération `i++` sur une variable partagée nommée `dufaud`, il y a un risque de corruption de la mémoire. Cette situation survient particulièrement lorsque **15 threads tentent d'accéder à la même zone mémoire**, ce qui est clairement une **pratique problématique**.
+
+#### Ressource Critique
+
+Une **ressource critique** désigne une zone mémoire partagée, pouvant être une case d’un tableau ou une variable. Le principe fondamental est qu’un seul thread ou processus à la fois doit avoir accès à cette ressource.
+
+#### Section Critique
+
+Une **section critique** est une portion de code où un seul thread peut être exécuté à un moment donné. Cette section devient essentielle lorsque plusieurs threads ou processus tentent d'accéder à la même ressource. Par exemple, dans une boucle `for` où tous les threads essaient d'effectuer des modifications sur la même ressource, cette boucle constitue une section critique.
+
+#### Exclusion Mutuelle
+
+L’**exclusion mutuelle** est un principe qui stipule que si un processus (P1) accède à une ressource critique, alors les autres processus (P2, P3, etc.) sont automatiquement **exclus** de cette ressource jusqu’à ce que P1 ait terminé son opération. Une fois que P1 quitte la ressource, P2 peut y accéder, et ainsi de suite. Ce principe reste valide, même avec un nombre infini de processus.
+
+#### Les Quatre Principes de l'Exclusion Mutuelle
+
+Il existe quatre principes fondamentaux pour gérer l’exclusion mutuelle :
+
+1. **Un accès à la fois dans la section critique** : Si un processus est dans une section critique, aucun autre processus ne peut y accéder. Ainsi, soit personne n’accède à cette portion de code, soit un seul processus le fait.
+
+2. **Libération de la section critique** : Si un processus est bloqué en dehors de la section critique, un autre processus doit pouvoir y entrer, tant que le premier principe est respecté.
+
+3. **Pas de blocage infini** : Si plusieurs processus souhaitent entrer dans la section critique, au moins un d'eux doit pouvoir y accéder après un temps raisonnable. Si ce principe n'est pas respecté, il pourrait en résulter un blocage : les processus resteraient en attente indéfiniment, tel un **groupe de singes piégés dans une boucle**.
+
+4. **Uniformité des règles** : Tous les processus doivent respecter les mêmes règles pour accéder à la section critique.
+
+#### Mutex et Sémaphores : Gestion des Sections Critiques
+
+Pour gérer ces sections critiques, nous utilisons des mécanismes tels que les **mutex**. Un mutex (exclusion mutuelle) est un verrou qui empêche plusieurs threads d'accéder simultanément à une section critique. En Java, par exemple, nous utilisons le mot-clé `synchronized` pour verrouiller une section de code et éviter que plusieurs threads n’y accèdent en même temps.
+
+#### Utilisation des Sémaphores
+
+Nous pouvons également recourir aux **sémaphores** pour gérer les sections critiques. Un sémaphore fonctionne comme un feu de signalisation qui régule l'accès à une ressource :
+
+- **`Wait()`** : Bloque l'accès à la ressource, forçant tous les threads à attendre.
+- **`Signal()`** : Un thread signale qu'il a terminé d'utiliser la ressource, permettant ainsi à un autre thread d'y accéder.
+
+Il existe deux types de sémaphores :
+1. **Sémaphore binaire** : Un seul thread peut accéder à la fois à la ressource.
+2. **Sémaphore comptant** : Plusieurs threads peuvent accéder simultanément à la ressource.
+
+Dans le cas d'un **sémaphore binaire**, si la valeur initiale est égale à 1, cela indique que la ressource est libre. Si elle est à 0, la ressource est occupée et les threads doivent attendre. L'appel à `Wait()` bloque les threads lorsque la valeur est à 0, et `Signal()` indique que la ressource est à nouveau disponible en rétablissant la valeur à 1.
+
+#### Problème de Sélection
+
+Si un mobile est significativement plus lent que les autres, il risque de rester dans la file d'attente indéfiniment, car tous les autres mobiles continueront à revenir dans l'état d'attente avant lui.
 
 
 ## Notes Annexes
