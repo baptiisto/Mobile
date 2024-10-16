@@ -12,6 +12,19 @@
 
 ### b)Thread 
 
+Un **thread** (fil d'exécution) est la plus petite unité de traitement qu'un système d'exploitation peut gérer. Il permet l'exécution simultanée de plusieurs tâches au sein d'un même programme.
+
+#### Caractéristiques :
+
+- **Légèreté** : Moins lourd qu'un processus, avec une gestion des ressources plus efficace.
+- **Partage de Mémoire** : Les threads d'un même processus partagent la mémoire, facilitant la communication, mais nécessitant une synchronisation pour éviter les conflits.
+- **Concurrence** : Permet l'exécution de tâches en parallèle, améliorant la réactivité des applications.
+
+#### Utilisations :
+
+Les threads sont utilisés pour améliorer la réactivité des applications, exécuter des tâches simultanées et gérer des ressources comme les connexions réseau.
+
+
 ### c) Cycle de vie 
 
 
