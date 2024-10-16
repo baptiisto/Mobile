@@ -10,6 +10,47 @@
 
 ### a) Conception architecturale
 ![image_conception(TP1)](conception.png)
+
+#### 1. Les classes et leurs rôles
+
+##### 1.1. Classe **UneFenetre**
+
+`UneFenetre` est la fenêtre principale de l'application, elle hérite de **JFrame** (la classe de base pour les fenêtres en Java). Elle a deux propriétés :
+- `LARGEUR {readOnly}` : la largeur de la fenêtre, qu'on ne peut pas changer après.
+- `HAUTEUR` : la hauteur de la fenêtre.
+- Méthode : `uneFenetre()` qui crée et configure la fenêtre.
+
+Elle contient aussi un objet `UnMobile`, qui représente ce qu'on va afficher dedans.
+
+##### 1.2. Classe **UnMobile**
+
+`UnMobile` est l'objet qui se déplace à l'écran, et il hérite de **JPanel** (composant graphique). Ses propriétés :
+- `saLargeur`, `saHauteur` : dimensions de l'objet.
+- `sonDebDessin` : où on commence à le dessiner.
+- `sonPas` : vitesse de déplacement.
+- `sonTemps`, `sonCote` : probablement liés au mouvement.
+- Méthodes : 
+  - `UnMobile(telLargeur, telHauteur)` pour initialiser l'objet.
+  - `run()` qui décrit son mouvement quand il est lancé dans un thread.
+  - `paintComponent(telCg)` pour dessiner l'objet à l'écran.
+
+##### 1.3. Classe **Thread**
+
+Le **Thread** permet de faire bouger l'objet en parallèle du reste de l'application. 
+- Méthodes : `start()` pour démarrer, et `Thread(Runnable)` pour exécuter le code de `UnMobile` en même temps que l'interface.
+
+##### 1.4. Interface **Runnable**
+
+`Runnable` est une interface qui impose d'implémenter la méthode `run()`, qui contient le code à exécuter dans le thread (dans ce cas, le mouvement de `UnMobile`).
+
+##### 1.5. Classe **TpMobile**
+
+C'est la classe qui contient `main()`, le point de départ du programme. C'est ici que la fenêtre (`UneFenetre`) et l'objet mobile sont créés et que tout se lance.
+
+#### 2. Fonctionnement à l'éxécution 
+
+L'application démarre dans `TpMobile` avec la création de `UneFenetre` et d'un objet `UnMobile`. Ensuite, un thread est lancé pour gérer le mouvement de l'objet grâce à la méthode `run()`. Pendant ce temps, `paintComponent()` s'occupe de dessiner l'objet à l'écran, pour qu'il soit mis à jour en continu dans la fenêtre.
+
 ### b)Thread 
 
 Un **thread** (fil d'exécution) est la plus petite unité de traitement qu'un système d'exploitation peut gérer. Il permet l'exécution simultanée de plusieurs tâches au sein d'un même programme.
