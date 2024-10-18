@@ -195,6 +195,14 @@ Dans cette conception, le **producteur** utilise la méthode `deposer()` pour in
 Les méthodes `deposer()` et `Retirer()` doivent être remplacées par `run()` car les classes **Producteur** et **Consommateur** héritent de la classe `Thread`. En utilisant `run()`, cela permet de lancer directement ces actions lorsque le thread démarre, ce qui est exactement ce que l'on veut. Si ces méthodes ne sont pas dans `run()`, on serait obligé d’appeler manuellement `deposer()` et `Retirer()`, ce qui enlèverait l’automatisation fournie par le démarrage du thread.
 ### Exo 1)
 
+## TP4) 
+    Pas de modéle unique en progrramation paralléle , plusieurs exritures pssoibles pour rendre un ocde parralele . C'est pas unique car 3 raisons.
+    1 ere raison : soit l'architecture est à mémoire partagée , soit à mémoire distribué soit les deux. LEs raspberry pi 0 sont homo alors que l'ensemble en comptant le raspberry pi 4 est hétéro
+    2 eme raison : Critére de qualité logicielle : modularité etccc
+    3 eme raison : algorithme , structure de données , dépendance entre les données et dépendance entre les taches . Sur certaines architectures le code ne pourra pas être parraléle.
+    Un peocessus multicoueur est un mids et il y a un l'inverse comme le GPU
+    Un algo qui a plein de taches du meme type marchera mieux sur du mcisd. 
+    
 |            | G25                        | I21                        | G24                        | OnePlus 9                  |
 |------------|----------------------------|----------------------------|----------------------------|----------------------------|
 | **CPU**    | i7 4770, 4c/8t, 3.4GHz, 3.9GHz Turbo, 64-bit | i7 4770, 4c/8t, 3.4GHz, 3.9GHz Turbo, 64-bit | i7-12700T, 12c/20t, 8p-core, 1.4GHz - 4.7GHz Turbo, 64-bit | Qualcomm SM8350 Snapdragon 888 (5 nm), 64-bit, 1x 2.84 GHz Cortex-X1, 3x 2.42 GHz Cortex-A78, 4x 1.80 GHz Cortex-A55 |
