@@ -99,6 +99,9 @@ Quand un thread est bloqué, il attend simplement la ressource nécessaire pour 
 
 Une fois que le thread a terminé d'exécuter sa méthode `run()`, il est terminé pour de bon. Il disparaît du système et ne peut plus être relancé.
 
+#### Problème de Sélection
+
+Si un mobile est significativement plus lent que les autres, il risque de rester dans la file d'attente indéfiniment, car tous les autres mobiles continueront à revenir dans l'état d'attente avant lui.
 
 
 ### d) Explication du code
@@ -111,12 +114,12 @@ On rajoute dans la méthode run du mobile une boucle qui va faire bouger le mobi
 #### Exo 2)
 On ajoute un bouton dans la classe UneFenetre qui est relié à un addEventListener quand on appuie sur le bouton. La fonction relié au AddEventListner va voir via un boolean si le mobile est arréte ou se déplace actuellement. Si le mobile est entrain de bouger on fait que le thread se stoppe avec la methode .suspend() et pour le faire reprendre on utilise la méthode .resume(). Malheureusement cela ne marche pas , car les methode .suspend et .resume sont deprecated. La classe thread est vieille et n'est plus utilisé. 
 ## TP2)
-### Exo 1)
-#### Problème d'Affichage avec les Threads
+
+### Problème d'Affichage avec les Threads
 
 Dans notre TP 2, nous avons fait fonctionner plusieurs mobiles en parallèle, chaque mobile étant géré par un thread distinct, avec des vitesses différentes. Cependant, nous avons observé un comportement inattendu : au lieu d'avoir un affichage ordonné du type **AABB**, l'affichage se fait sous la forme **ABAB**.
 
-#### Explication du Comportement
+### Explication du Comportement
 
 Ce problème survient parce que les deux threads, celui du mobile A et celui du mobile B, tentent d'afficher leur résultat au même moment, et au même endroit. Puisqu'ils sont indépendants, ils ne coordonnent pas leurs actions. En conséquence, leurs sorties se chevauchent.
 
@@ -169,9 +172,11 @@ Il existe deux types de sémaphores :
 
 Dans le cas d'un **sémaphore binaire**, si la valeur initiale est égale à 1, cela indique que la ressource est libre. Si elle est à 0, la ressource est occupée et les threads doivent attendre. L'appel à `Wait()` bloque les threads lorsque la valeur est à 0, et `Signal()` indique que la ressource est à nouveau disponible en rétablissant la valeur à 1.
 
-#### Problème de Sélection
+### Explication du code
 
-Si un mobile est significativement plus lent que les autres, il risque de rester dans la file d'attente indéfiniment, car tous les autres mobiles continueront à revenir dans l'état d'attente avant lui.
+#### Exo 1)
+
+Comme dit précédement, pour bloquer l'accés la ressource et la section critique, On va ajouter dans la méthode run de affichage un synchronised(System.out) qui englobe toute la boucle. Le synchronised va empêcher plusieurs threads d'accéder à l'objet System.out. Ce changement permet donc de faire quel l'affichage dans le terminal soit bien "AABBB".
 
 ## TP 3
 ### a)  Diagramme de classe
