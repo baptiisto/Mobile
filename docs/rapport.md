@@ -178,6 +178,10 @@ Dans le cas d'un **sémaphore binaire**, si la valeur initiale est égale à 1, 
 
 Comme dit précédement, pour bloquer l'accés la ressource et la section critique, On va ajouter dans la méthode run de affichage un synchronised(System.out) qui englobe toute la boucle. Le synchronised va empêcher plusieurs threads d'accéder à l'objet System.out. Ce changement permet donc de faire quel l'affichage dans le terminal soit bien "AABBB".
 
+#### Exo 2)
+
+A la place d'utiliser synchronised, on va utiliser le sémaphore binaire. Pour cela, Tous les objets Affichages auront comme attribut le même objet sémaphore binaire. Dans la méthode run d'Affichage avant que la boucle qui affiche le string dans le termiman , on utilise la méthode .Wait() pour faire attendre les autres objets affichages. Et à la fin de cette boucle , le sémaphore utilise la méthode .signal indinquant aux autres affichages que l'un d'eux peut prendre leur place. 
+
 ## TP 3
 ### a)  Diagramme de classe
 ![image_conception(TP3)](BalConception.png)
