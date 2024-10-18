@@ -173,7 +173,6 @@ Si un mobile est significativement plus lent que les autres, il risque de rester
 ## TP 3
 ### a)  Diagramme de classe
 ![image_conception(TP3)](BalConception.png)
-Ah, je comprends mieux maintenant ! Voici le rapport mis à jour avec cette clarification :
 
 #### Explication du diagramme 
 
@@ -182,7 +181,7 @@ Dans cette conception, le **producteur** utilise la méthode `deposer()` pour in
 #### Problème
 
 Les méthodes `deposer()` et `Retirer()` doivent être remplacées par `run()` car les classes **Producteur** et **Consommateur** héritent de la classe `Thread`. En utilisant `run()`, cela permet de lancer directement ces actions lorsque le thread démarre, ce qui est exactement ce que l'on veut. Si ces méthodes ne sont pas dans `run()`, on serait obligé d’appeler manuellement `deposer()` et `Retirer()`, ce qui enlèverait l’automatisation fournie par le démarrage du thread.
-
+### Exo 1)
 
 |            | G25                        | I21                        | G24                        | OnePlus 9                  |
 |------------|----------------------------|----------------------------|----------------------------|----------------------------|
