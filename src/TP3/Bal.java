@@ -1,25 +1,28 @@
 package TP3;
 
-public class Bal {
+public class BAL {
     String Boite;
-    Boolean avaible;
+    boolean Avalaible;
 
-    public Bal(String Boite, Boolean paravaible) {
-        this.Boite = Boite;
-        avaible = paravaible;
+    public BAL() {
+        Boite = "";
+        Avalaible = true;
     }
-    public synchronized Boolean write(String Lettre) throws InterruptedException {
-        if(!avaible) {
-            return avaible;
+
+    public synchronized boolean write(String Lettre)  {
+        if (Avalaible) {
+            Boite = Lettre;
+            Avalaible = false;
+            return true;
         }
-        Boite = Lettre;
-        avaible = false;
+        return false;
     }
-    public synchronized String read() throws InterruptedException {
-        if(avaible){
-            return null;
+
+    public synchronized String read()  {
+        if (!Avalaible){
+            Avalaible = true;
+            return Boite;
         }
-        avaible = true;
-        return Boite;
+        return "";
     }
 }
