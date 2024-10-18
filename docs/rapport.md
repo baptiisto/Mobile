@@ -103,13 +103,20 @@ Une fois que le thread a terminé d'exécuter sa méthode `run()`, il est termin
 
 ### d) Explication du code
 
-#### TP2)
+#### Exo 1)
+###### a) 
+On crée une fenêtre à l'aide de getContentPanel dans laquelle est inséré un objet mobile, qui sera exécuté dans un thread. Le mobile est ensuite ajouté au conteneur. Lorsqu'on lance le thread avec thread.start, cela déclenche la méthode run du mobile.
+###### b) 
+On rajoute dans la méthode run du mobile une boucle qui va faire bouger le mobile de droite à gauche aprés la premiére boucle.
+#### Exo 2)
 
-##### Problème d'Affichage avec les Threads
+## TP2)
+
+### Problème d'Affichage avec les Threads
 
 Dans notre TP 2, nous avons fait fonctionner plusieurs mobiles en parallèle, chaque mobile étant géré par un thread distinct, avec des vitesses différentes. Cependant, nous avons observé un comportement inattendu : au lieu d'avoir un affichage ordonné du type **AABB**, l'affichage se fait sous la forme **ABAB**.
 
-##### Explication du Comportement
+### Explication du Comportement
 
 Ce problème survient parce que les deux threads, celui du mobile A et celui du mobile B, tentent d'afficher leur résultat au même moment, et au même endroit. Puisqu'ils sont indépendants, ils ne coordonnent pas leurs actions. En conséquence, leurs sorties se chevauchent.
 
