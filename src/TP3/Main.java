@@ -1,13 +1,15 @@
 package TP3;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        Bal bal = new Bal("",true);
-        Producteur prod = new Producteur("12345",bal);
-        Consommateur cons = new Consommateur("",bal);
-        prod.start();
-        cons.start();
-        cons.retirerLettre();
-        prod.deposerLettre();
+    public static void main(String[] telsArgs) throws InterruptedException {
+        BAL bal = new BAL();
+        Producteur Pro = new Producteur("Salut",bal);
+        Consomateur con = new Consomateur(bal);
+
+        Pro.start();
+        con.start();
+
+
     }
 }
+
