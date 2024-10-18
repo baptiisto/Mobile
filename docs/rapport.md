@@ -111,12 +111,12 @@ On rajoute dans la méthode run du mobile une boucle qui va faire bouger le mobi
 #### Exo 2)
 On ajoute un bouton dans la classe UneFenetre qui est relié à un addEventListener quand on appuie sur le bouton. La fonction relié au AddEventListner va voir via un boolean si le mobile est arréte ou se déplace actuellement. Si le mobile est entrain de bouger on fait que le thread se stoppe avec la methode .suspend() et pour le faire reprendre on utilise la méthode .resume(). Malheureusement cela ne marche pas , car les methode .suspend et .resume sont deprecated. La classe thread est vieille et n'est plus utilisé. 
 ## TP2)
-
-### Problème d'Affichage avec les Threads
+### Exo 1)
+#### Problème d'Affichage avec les Threads
 
 Dans notre TP 2, nous avons fait fonctionner plusieurs mobiles en parallèle, chaque mobile étant géré par un thread distinct, avec des vitesses différentes. Cependant, nous avons observé un comportement inattendu : au lieu d'avoir un affichage ordonné du type **AABB**, l'affichage se fait sous la forme **ABAB**.
 
-### Explication du Comportement
+#### Explication du Comportement
 
 Ce problème survient parce que les deux threads, celui du mobile A et celui du mobile B, tentent d'afficher leur résultat au même moment, et au même endroit. Puisqu'ils sont indépendants, ils ne coordonnent pas leurs actions. En conséquence, leurs sorties se chevauchent.
 
@@ -124,11 +124,7 @@ Ce qui se passe, c'est que les deux threads accèdent simultanément à `System.
 
 Les deux threads effectuent cette opération dans une boucle `for`, qui représente une **section critique** : la partie du code où plusieurs threads tentent d’accéder à la même ressource en même temps. Comme il n'y a pas de synchronisation entre eux, cela conduit à cet affichage désordonné.
 
-Voici une version plus formelle de votre texte, tout en préservant la clarté des concepts :
-
----
-
-### e) Problème d'Accès Concurrent et Exclusion Mutuelle
+### Problème d'Accès Concurrent et Exclusion Mutuelle
 
 Dans notre TP2, nous avons rencontré un problème classique : les threads tentent d'accéder simultanément à la même zone mémoire. Par exemple, si plusieurs threads essaient d'effectuer l'opération `i++` sur une variable partagée nommée `dufaud`, il y a un risque de corruption de la mémoire. Cette situation survient particulièrement lorsque **15 threads tentent d'accéder à la même zone mémoire**, ce qui est clairement une **pratique problématique**.
 
