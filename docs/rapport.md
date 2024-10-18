@@ -8,7 +8,7 @@
 
 ## TP 1)
 
-### a) Conception architecturale
+### a)  Diagramme de classe
 ![image_conception(TP1)](conception.png)
 
 #### 1. Les classes et leurs rôles
@@ -170,9 +170,19 @@ Dans le cas d'un **sémaphore binaire**, si la valeur initiale est égale à 1, 
 
 Si un mobile est significativement plus lent que les autres, il risque de rester dans la file d'attente indéfiniment, car tous les autres mobiles continueront à revenir dans l'état d'attente avant lui.
 
+## TP 3
+### a)  Diagramme de classe
+![image_conception(TP3)](BalConception.png)
+Ah, je comprends mieux maintenant ! Voici le rapport mis à jour avec cette clarification :
 
-## Notes Annexes
-Etude archicteturale de certains d'ordinateurs de TP:
+#### Explication du diagramme 
+
+Dans cette conception, le **producteur** utilise la méthode `deposer()` pour insérer une lettre dans la boîte aux lettres (BAL), et le **consommateur** utilise la méthode `Retirer()` pour la retirer. Les deux ont une **relation associative** avec la BAL et héritent de la classe `Thread`, ce qui leur permet de s'exécuter dans des threads distincts et de fonctionner en parallèle, tout en étant synchronisés via la BAL pour éviter les conflits d'accès aux données partagées.
+
+#### Problème
+
+Les méthodes `deposer()` et `Retirer()` doivent être remplacées par `run()` car les classes **Producteur** et **Consommateur** héritent de la classe `Thread`. En utilisant `run()`, cela permet de lancer directement ces actions lorsque le thread démarre, ce qui est exactement ce que l'on veut. Si ces méthodes ne sont pas dans `run()`, on serait obligé d’appeler manuellement `deposer()` et `Retirer()`, ce qui enlèverait l’automatisation fournie par le démarrage du thread.
+
 
 |            | G25                        | I21                        | G24                        | OnePlus 9                  |
 |------------|----------------------------|----------------------------|----------------------------|----------------------------|
