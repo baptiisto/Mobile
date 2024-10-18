@@ -1,19 +1,22 @@
 package TP3;
 
 public class Producteur extends Thread {
-    String lettre;
-    Bal chbal;
+    BAL bal;
+    String Lettre;
 
-    public Producteur(String parlettre, Bal parbal) {
-        lettre = parlettre;
-        chbal = parbal;
+    public Producteur(String lettre,BAL bal) throws InterruptedException {
+        this.bal = bal;
+        Lettre = lettre;
     }
 
-    public void deposerLettre() throws InterruptedException {
-        while(chbal.write(lettre)== false){
-            Thread.sleep(100);
+    public void run(){
+        while (!bal.write(Lettre)){
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
-        chbal.write(lettre);
+        bal.write(Lettre);
     }
-
 }
