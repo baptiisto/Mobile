@@ -193,7 +193,13 @@ Dans cette conception, le producteur utilise la méthode deposer() pour insérer
 #### Problème
 
 Les méthodes `deposer()` et `Retirer()` doivent être remplacées par `run()` car les classes **Producteur** et **Consommateur** héritent de la classe `Thread`. En utilisant `run()`, cela permet de lancer directement ces actions lorsque le thread démarre, ce qui est exactement ce que l'on veut. Si ces méthodes ne sont pas dans `run()`, on serait obligé d’appeler manuellement `deposer()` et `Retirer()`, ce qui enlèverait l’automatisation fournie par le démarrage du thread.
-### Exo 1)
+### Exo 2)
+
+#### Producteur
+Le **Producteur** utilise un `do-while` pour lire des lettres depuis le clavier. À chaque itération, il appelle la méthode `write()` de la classe `BAL` pour écrire la lettre dans la boîte aux lettres partagée, même si la lettre est 'Q'. Si la boîte est pleine, il attend une seconde avant de réessayer. La boucle continue jusqu'à ce que l'utilisateur saisisse 'Q', à ce moment-là, la boucle se termine et le Producteur affiche un message indiquant qu'il s'est arrêté.
+
+#### Consommateur
+Le **Consommateur** fonctionne dans une boucle `while` infinie, retirant les lettres de la boîte aux lettres avec la méthode `read()` de la classe `BAL`. Il attend une seconde si la boîte aux lettres est vide. Lorsqu'il retire une lettre, il l'affiche. Si la lettre retirée est 'Q', la boucle est brisée avec un `break`, et le Consommateur affiche un message indiquant qu'il s'est arrêté.
 
 ## TP4) 
     Pas de modéle unique en progrramation paralléle , plusieurs exritures pssoibles pour rendre un ocde parralele . C'est pas unique car 3 raisons.
