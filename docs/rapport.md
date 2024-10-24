@@ -188,7 +188,7 @@ A la place d'utiliser synchronised, on va utiliser le sémaphore binaire. Pour c
 
 #### Explication du diagramme 
 
-Dans cette conception, le **producteur** utilise la méthode `deposer()` pour insérer une lettre dans la boîte aux lettres (BAL), et le **consommateur** utilise la méthode `Retirer()` pour la retirer. Les deux ont une **relation associative** avec la BAL et héritent de la classe `Thread`, ce qui leur permet de s'exécuter dans des threads distincts et de fonctionner en parallèle, tout en étant synchronisés via la BAL pour éviter les conflits d'accès aux données partagées.
+Dans cette conception, le producteur utilise la méthode deposer() pour insérer une lettre dans la boîte aux lettres (BAL), et le consommateur utilise la méthode Retirer() pour la retirer. Les deux ont une relation associative avec la BAL et héritent de la classe Thread, ce qui leur permet de s'exécuter dans des threads distincts et de fonctionner en parallèle, tout en étant synchronisés via la BAL pour éviter les conflits d'accès aux données partagées. Les méthodes deposer() et Retirer() des classes Producteur et Consommateur appellent respectivement les méthodes write(Lettre) et read() de la BAL. Ces dernières sont marquées comme synchronised, ce qui signifie que lorsque l'un des threads (Producteur ou Consommateur) accède à ces méthodes pour écrire ou lire une lettre, l'accès est automatiquement synchronisé afin qu'un seul thread puisse y accéder à un moment donné, bloquant ainsi les autres threads jusqu'à ce que l'opération soit terminée. Cela empêche les incohérences dans les données partagées, car sans cette synchronisation, il pourrait y avoir des conflits lorsque plusieurs threads essaient d'accéder à la même ressource (la BAL) simultanément.
 
 #### Problème
 
