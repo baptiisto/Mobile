@@ -207,7 +207,55 @@ Le **Consommateur** fonctionne dans une boucle `while` infinie, retirant les let
     2 eme raison : Critére de qualité logicielle : modularité etccc
     3 eme raison : algorithme , structure de données , dépendance entre les données et dépendance entre les taches . Sur certaines architectures le code ne pourra pas être parraléle.
     Un peocessus multicoueur est un mids et il y a un l'inverse comme le GPU
-    Un algo qui a plein de taches du meme type marchera mieux sur du mcisd. 
+    Un algo qui a plein de taches du meme type marchera mieux sur du mcisd.
+### Explication du diagramme
+#### Rapport sur la conception du modèle concurrent de la boulangerie
+
+##### 1. Introduction
+
+Ce rapport présente la conception d'un modèle concurrent pour simuler une boulangerie où un producteur (le boulanger) et plusieurs consommateurs (les mangeurs) interagissent de manière parallèle. Le modèle est basé sur l'utilisation de threads et d'une structure de file bloquante (**BlockingQueue**) pour gérer les accès simultanés au stock de pains. Un pain spécial, dit **empoisonné**, est utilisé comme signal pour mettre fin à la consommation.
+
+##### 2. Structure du modèle
+
+###### 2.1 La classe Boulangerie
+La classe **Boulangerie** est l'entité centrale qui gère le stock de pains à travers une file d'attente bloquante (BlockingQueue). Elle expose trois méthodes principales :
+- **`depose(Pain pain)`** : Permet au boulanger de déposer un pain dans le stock. Si la file est pleine, le boulanger attend qu'il y ait de la place disponible.
+- **`achete()`** : Permet aux consommateurs (mangeurs) d'acheter un pain en le retirant de la file. Si la file est vide, les consommateurs attendent qu'un pain soit déposé.
+- **`getStock()`** : Renvoie la taille actuelle de la file, indiquant ainsi le nombre de pains disponibles.
+
+La boulangerie utilise une instance de **BlockingQueue** pour garantir une gestion sécurisée et ordonnée de l'accès concurrent au stock.
+
+###### 2.2 La classe Pain
+La classe **Pain** représente un pain qui peut être produit par le boulanger et consommé par les mangeurs. Un pain spécial, appelé **`PAIN_EMPOISONNE`**, est utilisé comme signal pour indiquer la fin du processus de consommation.
+
+Ce pain empoisonné est une constante utilisée par la boulangerie pour signifier à tous les consommateurs qu’ils doivent arrêter de consommer et terminer leur tâche.
+
+###### 2.3 La file d’attente bloquante (BlockingQueue)
+La **BlockingQueue** est une structure de données bloquante qui permet au boulanger de déposer des pains et aux mangeurs de les retirer. Cette file assure que :
+- Si un consommateur tente de retirer un pain alors que la file est vide, il est mis en attente jusqu’à ce qu’un pain soit disponible.
+- Si le boulanger tente de déposer un pain alors que la file est pleine, il est mis en attente jusqu’à ce qu’un consommateur libère de la place.
+
+Les méthodes principales de cette file sont :
+- **`offer(E e, TimeUnit unit)`** : Ajoute un élément à la file dans un délai donné. Si la file est pleine, le boulanger attend.
+- **`poll(long timeout, TimeUnit unit)`** : Retire un élément de la file dans un délai donné. Si la file est vide, le consommateur attend.
+- **`size()`** : Renvoie le nombre actuel d'éléments dans la file.
+
+###### 2.4 Le Boulanger (Producteur)
+Le **Boulanger** est un producteur qui dépose des pains dans la boulangerie en utilisant la méthode **`depose(Pain pain)`**. Le boulanger fonctionne dans un thread séparé pour garantir qu’il puisse travailler de manière indépendante des mangeurs.
+- **`run()`** : La méthode `run()` du boulanger permet de simuler un processus de production répétée des pains. Le boulanger produit des pains jusqu’à ce qu’il atteigne une condition de fin
+
+###### 2.5 Le Mangeur (Consommateur)
+Le **Mangeur** est un consommateur qui récupère des pains de la boulangerie en utilisant la méthode **`achete()`**. Comme le boulanger, le mangeur fonctionne dans un thread séparé. Les mangeurs consomment des pains jusqu’à ce qu’ils rencontrent le **PAIN_EMPOISONNE**, ce qui met fin à leur thread.
+
+- **`run()`** : La méthode `run()` du mangeur permet de simuler la consommation répétée des pains. Tant qu’il n’a pas consommé le **PAIN_EMPOISONNE**, il continue à retirer des pains de la file. Une fois le pain empoisonné consommé, le mangeur s’arrête.
+
+##### 3. Fonctionnement du modèle concurrent
+
+##### 3.1 Production et consommation des pains
+Dans ce modèle, le **boulanger** produit des pains à un rythme défini et les dépose dans la file bloquante de la boulangerie. Les **mangeurs** consomment les pains en les retirant de la file. La file d’attente permet de synchroniser la production et la consommation en bloquant les mangeurs lorsqu'il n'y a pas de pain, ou en bloquant le boulanger lorsque la file est pleine.
+
+###### 3.2 Utilisation du Pain Empoisonné
+Le **pain empoisonné** est un mécanisme de signalisation utilisé pour indiquer la fin du processus de consommation.Lorsqu'un mangeur consomme ce pain, il comprend que le processus doit se terminer, et son thread s'arrête. Ce mécanisme assure un arrêt propre et ordonné des consommateurs. 
     
 |            | G25                        | I21                        | G24                        | OnePlus 9                  |
 |------------|----------------------------|----------------------------|----------------------------|----------------------------|
