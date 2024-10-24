@@ -202,12 +202,17 @@ Le **Producteur** utilise un `do-while` pour lire des lettres depuis le clavier.
 Le **Consommateur** fonctionne dans une boucle `while` infinie, retirant les lettres de la boîte aux lettres avec la méthode `read()` de la classe `BAL`. Il attend une seconde si la boîte aux lettres est vide. Lorsqu'il retire une lettre, il l'affiche. Si la lettre retirée est 'Q', la boucle est brisée avec un `break`, et le Consommateur affiche un message indiquant qu'il s'est arrêté.
 
 ## TP4) 
-    Pas de modéle unique en progrramation paralléle , plusieurs exritures pssoibles pour rendre un ocde parralele . C'est pas unique car 3 raisons.
-    1 ere raison : soit l'architecture est à mémoire partagée , soit à mémoire distribué soit les deux. LEs raspberry pi 0 sont homo alors que l'ensemble en comptant le raspberry pi 4 est hétéro
-    2 eme raison : Critére de qualité logicielle : modularité etccc
-    3 eme raison : algorithme , structure de données , dépendance entre les données et dépendance entre les taches . Sur certaines architectures le code ne pourra pas être parraléle.
-    Un peocessus multicoueur est un mids et il y a un l'inverse comme le GPU
-    Un algo qui a plein de taches du meme type marchera mieux sur du mcisd.
+   Il n’existe pas de modèle unique pour rendre un code parallèle. Les différences viennent de trois raisons principales :
+
+    Architecture matérielle :
+    Un système peut avoir une mémoire partagée (tous les cœurs partagent les mêmes données) ou mémoire distribuée (chaque unité a sa propre mémoire). Certains systèmes peuvent être hybrides. Par exemple, les Raspberry Pi 0 sont homogènes, mais l'ajout d'un Raspberry Pi 4 crée de l'hétérogénéité.
+
+    Critères de qualité logicielle :
+    Les aspects comme la modularité, l’évolutivité ou la sûreté du code influencent les choix de parallélisation. Un code bien structuré permet une meilleure maintenance et adaptabilité sur différentes architectures.
+
+    Algorithmes et dépendances :
+    Les dépendances entre données et tâches limitent parfois la parallélisation. Des architectures comme les GPU (SIMD) sont efficaces pour des tâches identiques. En revanche, sur des processeurs multicœurs (MIMD), la parallélisation dépend de la nature des tâches.
+
 ### Explication du diagramme
 #### Rapport sur la conception du modèle concurrent de la boulangerie
 
