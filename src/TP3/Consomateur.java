@@ -1,25 +1,31 @@
 package TP3;
 
-public class Consomateur extends Thread{
-    String Lettre;
-    BAL bal;
+public class Consomateur extends Thread {
+    private BAL bal;
 
-    public Consomateur(BAL bal) throws InterruptedException {
-        Lettre="";
+    public Consomateur(BAL bal) {
         this.bal = bal;
     }
 
+    @Override
     public void run() {
-        Lettre = bal.read();
-        while (Lettre==""){
-            System.out.println(Lettre);
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        String lettre;
+        while (true) {
+            lettre = bal.read();
+            if (!lettre.equals("")) {
+                System.out.println("Consommateur a retiré la lettre: " + lettre);
+                if (lettre.equals("Q")) {
+                    System.out.println("Consommateur en a marre du Q");
+                    break;
+                }
+            } else {
+                System.out.println("Boîte aux lettres vide, attente...");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            Lettre = bal.read();
         }
-        System.out.println("Contenue de la Lettre : " + Lettre);
     }
 }

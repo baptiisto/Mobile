@@ -4,12 +4,10 @@ public class Main {
     public static void main(String[] telsArgs) throws InterruptedException {
         BAL bal = new BAL();
         Consomateur con = new Consomateur(bal);
-        Producteur Pro = new Producteur("Salut",bal);
+        Producteur Pro = new Producteur(bal);
 
-
-        Pro.start();
         con.start();
-
+        Pro.start();
 
     }
 }
