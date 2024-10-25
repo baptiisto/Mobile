@@ -123,6 +123,25 @@ https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/lan
 ## TP2)
 ### Diagramme de conception
 ![image_conception(TP2)](Conception_Cemaphore_V1.png)
+### Explication du Diagramme 
+
+
+1. **Affichage** :
+   - Attribut : `texte`, qui est une chaîne de caractères.
+   - Méthode : `run()`, qui est exécutée pour lancer le thread et effectuer une action ( afficher du texte).
+   - Cette classe utilise un sémaphore binaire, référencé par l'attribut `parcb`, pour synchroniser l'exécution du thread avec d'autres actions.
+
+2. **CemaphoreBinaire** :
+   - Méthode : `syncSignal()`, qui sert à envoyer un signal pour indiquer que le sémaphore binaire doit passer à l'état 1 (libérer l'accès à une ressource ou débloquer un thread).
+   - Cette classe dérive de `Cemaphore` et implémente un sémaphore binaire, qui ne peut prendre que deux valeurs : 0 (bloqué) ou 1 (libéré).
+
+3. **Cemaphore** :
+   - Attribut : `valeur`, qui représente l'état du sémaphore.
+   - Méthode : `syncWait()`, qui fait attendre un thread si le sémaphore est à 0.
+   - Méthode : `syncSignal()`, qui passe la valeur du sémaphore à 1, permettant à un thread en attente de continuer son exécution.
+
+**En résumé** : La classe **Affichage** est un thread qui utilise un **sémaphore binaire** pour gérer l'accès synchronisé à une ressource partagée. Le sémaphore contrôle si un thread peut continuer ou s'il doit attendre d'écrire un texte , garantissant une exécution ordonnée et sans interférence entre plusieurs threads.
+
 ### Problème d'Affichage avec les Threads
 
 Dans notre TP 2, nous avons fait fonctionner plusieurs mobiles en parallèle, chaque mobile étant géré par un thread distinct, avec des vitesses différentes. Cependant, nous avons observé un comportement inattendu : au lieu d'avoir un affichage ordonné du type **AABB**, l'affichage se fait sous la forme **ABAB**.
