@@ -297,7 +297,7 @@ Dans ce modèle, le **boulanger** produit des pains à un rythme défini et les 
 Le **pain empoisonné** est un mécanisme de signalisation utilisé pour indiquer la fin du processus de consommation.Lorsqu'un mangeur consomme ce pain, il comprend que le processus doit se terminer, et son thread s'arrête. Ce mécanisme assure un arrêt propre et ordonné des consommateurs. 
 
 ### Adaptation du code Pour BAL
-![image_conception(TP3)](ConceptionBALV2.png)
+![image_conception(TP3)](ConceptionBalV2.png)
     
 |            | G25                        | I21                        | G24                        | OnePlus 9                  |
 |------------|----------------------------|----------------------------|----------------------------|----------------------------|
