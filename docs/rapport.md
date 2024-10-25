@@ -246,6 +246,9 @@ Les méthodes principales de cette file sont :
 - **`poll(long timeout, TimeUnit unit)`** : Retire un élément de la file dans un délai donné. Si la file est vide, le consommateur attend.
 - **`size()`** : Renvoie le nombre actuel d'éléments dans la file.
 
+Pour en savoir plus sur la BlockingQueue:
+https://igm.univ-mlv.fr/~juge/javadoc-19/java.base/java/util/concurrent/BlockingQueue.html
+
 ###### 2.4 Le Boulanger (Producteur)
 Le **Boulanger** est un producteur qui dépose des pains dans la boulangerie en utilisant la méthode **`depose(Pain pain)`**. Le boulanger fonctionne dans un thread séparé pour garantir qu’il puisse travailler de manière indépendante des mangeurs.
 - **`run()`** : La méthode `run()` du boulanger permet de simuler un processus de production répétée des pains. Le boulanger produit des pains jusqu’à ce qu’il atteigne une condition de fin
