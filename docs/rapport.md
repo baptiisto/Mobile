@@ -5,6 +5,9 @@
 
 ## Architecture Matérielle)
 
+## Introduction
+
+Ce rapport retracera toutes les notions vu en TP et les explications du code fourni par moi même.
 
 ## TP 1)
 
