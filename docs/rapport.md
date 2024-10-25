@@ -221,6 +221,9 @@ Le **Consommateur** fonctionne dans une boucle `while` infinie, retirant les let
 Pour ce diagramme, on va utiliser l'api concurrente en JAVA.
 L'API de concurrence en Java permet de simplifier la gestion des programmes multi-threadés. En gros, elle offre des outils pour exécuter des tâches en parallèle et éviter les problèmes comme les conflits entre threads.Les verrous et les collections thread-safe (comme ConcurrentHashMap) permettent de synchroniser les accès partagés aux ressources, évitant les erreurs. 
 
+Pour en savoir plussur l'API concurrente :
+https://docs.oracle.com/javase/8/docs/api/index.html?java/util/concurrent/package-summary.html
+
 ##### 2. Structure du modèle
 
 ###### 2.1 La classe Boulangerie
