@@ -113,6 +113,10 @@ On crée une fenêtre à l'aide de getContentPanel dans laquelle est inséré un
 On rajoute dans la méthode run du mobile une boucle qui va faire bouger le mobile de droite à gauche aprés la premiére boucle.
 #### Exo 2)
 On ajoute un bouton dans la classe UneFenetre qui est relié à un addEventListener quand on appuie sur le bouton. La fonction relié au AddEventListner va voir via un boolean si le mobile est arréte ou se déplace actuellement. Si le mobile est entrain de bouger on fait que le thread se stoppe avec la methode .suspend() et pour le faire reprendre on utilise la méthode .resume(). Malheureusement cela ne marche pas , car les methode .suspend et .resume sont deprecated. La classe thread est vieille et n'est plus utilisé. 
+
+Pour en savoir plus sur la classe Thread en Java:
+https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/lang/Thread.html
+
 ## TP2)
 
 ### Problème d'Affichage avec les Threads
