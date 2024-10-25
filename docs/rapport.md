@@ -121,7 +121,8 @@ Pour en savoir plus sur la classe Thread en Java:
 https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/lang/Thread.html
 
 ## TP2)
-
+### Diagramme de conception
+![image_conception(TP2)](Conception_Cemaphore_V1.png)
 ### Problème d'Affichage avec les Threads
 
 Dans notre TP 2, nous avons fait fonctionner plusieurs mobiles en parallèle, chaque mobile étant géré par un thread distinct, avec des vitesses différentes. Cependant, nous avons observé un comportement inattendu : au lieu d'avoir un affichage ordonné du type **AABB**, l'affichage se fait sous la forme **ABAB**.
