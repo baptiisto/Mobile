@@ -214,6 +214,7 @@ Le **Consommateur** fonctionne dans une boucle `while` infinie, retirant les let
     Les dépendances entre données et tâches limitent parfois la parallélisation. Des architectures comme les GPU (SIMD) sont efficaces pour des tâches identiques. En revanche, sur des processeurs multicœurs (MIMD), la parallélisation dépend de la nature des tâches.
 
 ### Explication du diagramme
+![image_conception(TP4)](BoulangerieConception.png)
 #### Rapport sur la conception du modèle concurrent de la boulangerie
 
 ##### 1.
