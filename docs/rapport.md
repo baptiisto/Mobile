@@ -216,9 +216,9 @@ Le **Consommateur** fonctionne dans une boucle `while` infinie, retirant les let
 ### Explication du diagramme
 #### Rapport sur la conception du modèle concurrent de la boulangerie
 
-##### 1. Introduction
-
-Ce rapport présente la conception d'un modèle concurrent pour simuler une boulangerie où un producteur (le boulanger) et plusieurs consommateurs (les mangeurs) interagissent de manière parallèle. Le modèle est basé sur l'utilisation de threads et d'une structure de file bloquante (**BlockingQueue**) pour gérer les accès simultanés au stock de pains. Un pain spécial, dit **empoisonné**, est utilisé comme signal pour mettre fin à la consommation.
+##### 1.
+Pour ce diagramme, on va utiliser l'api concurrente en JAVA.
+L'API de concurrence en Java permet de simplifier la gestion des programmes multi-threadés. En gros, elle offre des outils pour exécuter des tâches en parallèle et éviter les problèmes comme les conflits entre threads.Les verrous et les collections thread-safe (comme ConcurrentHashMap) permettent de synchroniser les accès partagés aux ressources, évitant les erreurs. 
 
 ##### 2. Structure du modèle
 
