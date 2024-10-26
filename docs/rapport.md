@@ -7,7 +7,7 @@
 
 ## Introduction
 
-Ce rapport retracera toutes les notions vu en TP et les explications du code fourni par moi même.
+Ce rapport retracera toutes les notions vu en TP et les explications du code fourni par moi même. Chat Gpt fut utilisé pour ce rapport pour la reformulation de phrases.
 
 ## TP 1)
 
